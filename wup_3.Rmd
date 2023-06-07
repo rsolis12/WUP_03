@@ -25,6 +25,16 @@ basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ## Now add in boxplot
 
 ```{r}
+ggplot(davisdata, aes(x = Seat, y = alcohol)) +
+  geom_boxplot(notch = TRUE, outlier.colour = "red") +
+  labs(title = "Notched Box Plot of Alcohol by Seat") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+
+
+```{r}
 basicCN + geom_boxplot()
 ```
   
@@ -37,8 +47,33 @@ basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='e
 
 ## Numerical Summarys 
 
+```{r}
+favstats(alcohol~Seat,data=davisdata)
+```
+The people in the back are drinking alot more then people in the front and middle. The data shows that min all equal 0, but with the median,the people in the back have 4 and the people in the middle have 1 while the front have none. There is a big difference 
+
 ## Inferential Tests
 
+```{r}
+model1 <- aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
+```
+```{r}
+plot(TukeyHSD(model1))
+```
+
+
+```{r}
+# Perform Tukey HSD test
+tukey_result <- TukeyHSD(anova_result)
+
+# Print the results
+print(tukey_result)
+
+```
+
+
+There is a difference between the rows. 
 ## Conclusions
 
 
