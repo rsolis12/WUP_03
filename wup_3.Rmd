@@ -70,5 +70,5 @@ print(tukey_result)
 
 There is a difference between the rows. 
 ## Conclusions
- F
+ From what ive observed their is a difference between the front row and the middle and back. Particulary the lower front and middle to the upper and adj.
 
