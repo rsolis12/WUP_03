@@ -24,19 +24,7 @@ basicCN <- ggplot(davisdata,aes(y=alcohol,x=Seat))
 ```
 ## Now add in boxplot
 
-```{r}
-ggplot(davisdata, aes(x = Seat, y = alcohol)) +
-  geom_boxplot(notch = TRUE, outlier.colour = "red") +
-  labs(title = "Notched Box Plot of Alcohol by Seat") +
-  theme(plot.title = element_text(hjust = 0.5))
 
-```
-
-
-
-```{r}
-basicCN + geom_boxplot()
-```
   
   
 ### get fancy  
@@ -55,10 +43,17 @@ The people in the back are drinking alot more then people in the front and middl
 ## Inferential Tests
 
 ```{r}
-model1 <- aov(alcohol~Seat,data=davisdata)
-summary.aov(model1)
+# Load the necessary library
+library(stats)
+
+# Perform ANOVA test
+anova_result <- aov(alcohol ~ Seat, data = davisdata)
+
+# Check the ANOVA table
+summary(anova_result)
+
 ```
-```{r}
+```{r,eval=FALSE}
 plot(TukeyHSD(model1))
 ```
 
@@ -75,5 +70,5 @@ print(tukey_result)
 
 There is a difference between the rows. 
 ## Conclusions
-
+ F
 
